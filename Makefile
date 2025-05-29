@@ -38,7 +38,7 @@ install-dev:
 # Code quality - SIMPLE COMMANDS ONLY
 format:
 	@echo "Formatting code..."
-	black schemafied/ tests/ utils/ --line-length 240
+	black schemafied/ tests/ --line-length 240
 
 lint:
 	@echo "Linting code..."
@@ -79,13 +79,6 @@ version-check:
 	@echo "Git status:"
 	@git status --porcelain || echo "  Clean working directory"
 	@echo ""
-
-create-tag:
-	@echo "=== Creating Git Tag ==="
-	$(eval VERSION := $(shell grep "__version__" schemafied/__init__.py | cut -d'"' -f2))
-	@echo "Creating tag v$(VERSION)..."
-	git tag -a v$(VERSION) -m "Release v$(VERSION)"
-	@echo "✅ Tag v$(VERSION) created successfully"
 
 # Build process
 build: clean dev-check verify-version

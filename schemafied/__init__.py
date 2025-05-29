@@ -9,7 +9,7 @@ This library provides comprehensive dictionary validation with support for:
 - Performance optimization for large datasets
 """
 
-__version__ = "0.0.0"
+__version__ = "1.0.0"
 __author__ = "Nadeem Ashraf"
 __email__ = "dev.nadeemashraf06@gmail.com"
 __license__ = "MIT"
