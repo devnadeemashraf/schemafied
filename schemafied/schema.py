@@ -14,7 +14,7 @@ class Schema:
     orchestrating field validation and error aggregation.
     """
 
-    def __init__(self, fields: Dict[str, Field], strict: bool = False, description: str = ""):
+    def __init__(self, fields: Dict[str, Field], strict: bool = False, description: str = "") -> None:
         """
         Initialize schema with field definitions.
 
@@ -127,7 +127,7 @@ class Schema:
         """Get list of optional field names."""
         return [name for name, field in self.fields.items() if not field.required]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         field_count = len(self.fields)
         strict_str = ", strict=True" if self.strict else ""
         return f"Schema({field_count} fields{strict_str})"

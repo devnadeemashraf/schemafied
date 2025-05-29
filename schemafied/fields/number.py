@@ -17,7 +17,7 @@ class NumberField(Field):
         min_value: Optional[Union[int, float]] = None,
         max_value: Optional[Union[int, float]] = None,
         **kwargs,
-    ):
+    ) -> None:
         """
         Initialize NumberField with constraints.
 
@@ -78,7 +78,7 @@ class NumberField(Field):
                 constraint = f"must be at most {self.max_value}"
             context.add_error(ConstraintError(context.field_path, constraint, value))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         constraints = []
         if self.min_value is not None:
             constraints.append(f"min={self.min_value}")

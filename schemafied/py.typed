@@ -1,0 +1,3 @@
+partial
+# Indicates some modules may lack type annotations
+# MyPy will be more lenient with missing annotations

@@ -20,7 +20,7 @@ class ListField(Field):
         max_length: Optional[int] = None,
         max_item_errors: int = 10,
         **kwargs,
-    ):
+    ) -> None:
         """
         Initialize ListField with item validation.
 
@@ -112,7 +112,7 @@ class ListField(Field):
 
         return validated_items
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         constraints = []
         if self.min_length is not None:
             constraints.append(f"min_length={self.min_length}")

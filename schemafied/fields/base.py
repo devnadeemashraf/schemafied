@@ -20,7 +20,7 @@ class Field(ABC):
         validators: Optional[List[Callable[[Any], Union[bool, str]]]] = None,
         coerce: bool = True,
         description: str = "",
-    ):
+    ) -> None:
         """
         Initialize field with common validation parameters.
 
@@ -114,5 +114,5 @@ class Field(ABC):
         """
         pass
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.__class__.__name__}(required={self.required})"

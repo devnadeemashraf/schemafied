@@ -14,7 +14,7 @@ class DictField(Field):
     to their respective field definitions in the schema.
     """
 
-    def __init__(self, schema: DictType[str, Field], strict: bool = False, **kwargs):
+    def __init__(self, schema: DictType[str, Field], strict: bool = False, **kwargs) -> None:
         """
         Initialize DictField with a nested schema.
 
@@ -81,7 +81,7 @@ class DictField(Field):
             error = ValidationError("Extra field not allowed in strict mode", extra_context.field_path)
             context.add_error(error)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         field_names = list(self.schema.keys())
         if len(field_names) <= 3:
             fields_str = f"[{', '.join(field_names)}]"

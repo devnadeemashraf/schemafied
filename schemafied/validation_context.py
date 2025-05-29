@@ -10,7 +10,8 @@ class ValidationResult:
     is_valid: bool
     errors: List["ValidationError"] = None  # type: ignore
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
+        """Initialize errors list if not provided."""
         if self.errors is None:
             self.errors = []
 
@@ -23,7 +24,7 @@ class ValidationContext:
     for nested data structures.
     """
 
-    def __init__(self, field_path: str = "", parent: Optional["ValidationContext"] = None):
+    def __init__(self, field_path: str = "", parent: Optional["ValidationContext"] = None) -> None:
         self.field_path = field_path
         self.parent = parent
         self.errors: List["ValidationError"] = []  # type: ignore

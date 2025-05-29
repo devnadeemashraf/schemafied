@@ -19,7 +19,7 @@ class StringField(Field):
         max_length: Optional[int] = None,
         pattern: Optional[Union[str, Pattern]] = None,
         **kwargs,
-    ):
+    ) -> None:
         """
         Initialize StringField with constraints.
 
@@ -88,7 +88,7 @@ class StringField(Field):
             constraint = f"must match pattern: {self.pattern.pattern}"
             context.add_error(ConstraintError(context.field_path, constraint, value))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         constraints = []
         if self.min_length is not None:
             constraints.append(f"min_length={self.min_length}")

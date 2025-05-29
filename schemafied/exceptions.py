@@ -10,26 +10,26 @@ class ValidationError(Exception):
         field_path: str = "",
         error_code: str = "validation_error",
         value: Any = None,
-    ):
+    ) -> None:
         super().__init__(message)
         self.message = message
         self.field_path = field_path
         self.error_code = error_code
         self.value = value
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.field_path:
             return f"{self.field_path}: {self.message}"
         return self.message
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"ValidationError(message='{self.message}', field_path='{self.field_path}')"
 
 
 class ValidationErrorCollection(Exception):
     """Collection of validation errors with structured reporting."""
 
-    def __init__(self, errors: List[ValidationError]):
+    def __init__(self, errors: List[ValidationError]) -> None:
         self.errors = errors
         super().__init__(self._format_errors())
 
@@ -78,21 +78,21 @@ class ValidationErrorCollection(Exception):
 class MissingFieldError(ValidationError):
     """Error for missing required fields."""
 
-    def __init__(self, field_path: str):
+    def __init__(self, field_path: str) -> None:
         super().__init__("This field is required", field_path, "required")
 
 
 class ConstraintError(ValidationError):
     """Error for constraint violations."""
 
-    def __init__(self, field_path: str, constraint: str, value: Any = None):
+    def __init__(self, field_path: str, constraint: str, value: Any = None) -> None:
         super().__init__(constraint, field_path, "constraint", value)
 
 
 class TypeValidationError(ValidationError):
     """Error for type validation failures."""
 
-    def __init__(self, field_path: str, expected_type: str, actual_type: str, value: Any = None):
+    def __init__(self, field_path: str, expected_type: str, actual_type: str, value: Any = None) -> None:
         message = f"Expected {expected_type}, got {actual_type}"
         super().__init__(message, field_path, "type_error", value)
         self.expected_type = expected_type
@@ -102,7 +102,7 @@ class TypeValidationError(ValidationError):
 class NestedValidationError(ValidationError):
     """Error for nested validation failures."""
 
-    def __init__(self, field_path: str, nested_errors: List[ValidationError]):
+    def __init__(self, field_path: str, nested_errors: List[ValidationError]) -> None:
         error_count = len(nested_errors)
         message = f"Nested validation failed with {error_count} errors"
         super().__init__(message, field_path, "nested_validation")

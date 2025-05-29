@@ -14,30 +14,34 @@ __author__ = "Nadeem Ashraf"
 __email__ = "dev.nadeemashraf06@gmail.com"
 __license__ = "MIT"
 
-# Core exports
-from .schema import Schema
-from .exceptions import (
-    ValidationError,
-    ValidationErrorCollection,
-    MissingFieldError,
-    ConstraintError,
-    TypeValidationError,
-    NestedValidationError,
-)
+# Import Annotations
+from typing import TYPE_CHECKING
 
-# Field exports
-from .fields import (
-    Field,
-    NumberField,
-    StringField,
-    ListField,
-    DictField,
-)
+if TYPE_CHECKING:
+    # Core exports
+    from .schema import Schema
+    from .exceptions import (
+        ValidationError,
+        ValidationErrorCollection,
+        MissingFieldError,
+        ConstraintError,
+        TypeValidationError,
+        NestedValidationError,
+    )
 
-# Validation context (advanced usage)
-from .validation_context import ValidationContext
+    # Field exports
+    from .fields import (
+        Field,
+        NumberField,
+        StringField,
+        ListField,
+        DictField,
+    )
 
-__all__ = [
+    # Validation context (advanced usage)
+    from .validation_context import ValidationContext
+
+__all__: list[str] = [
     # Core classes
     "Schema",
     "ValidationContext",
