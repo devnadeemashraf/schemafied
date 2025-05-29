@@ -2,7 +2,7 @@
 
 A Python library for validating data structures against user-defined schemas with comprehensive error reporting and nested structure support.
 
-[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://python.org)
+[![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PyPI Version](https://img.shields.io/pypi/v/schemafied.svg)](https://pypi.org/project/schemafied/)
 
