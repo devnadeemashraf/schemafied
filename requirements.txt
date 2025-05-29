@@ -1,0 +1,2 @@
+# Runtime requirements - Schemafied is dependency-free!
+# This file is kept empty as Schemafied uses no dependencies at runtime.

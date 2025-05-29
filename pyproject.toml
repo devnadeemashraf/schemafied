@@ -1,0 +1,297 @@
+# ===================================================================
+# BUILD SYSTEM CONFIGURATION
+# ===================================================================
+# This section replaces the imports at the top of setup.py:
+# from setuptools import setup, find_packages
+[build-system]
+requires = ["setuptools>=80.9", "wheel>=0.45.1"]
+build-backend = "setuptools.build_meta"
+
+# Explanation:
+# - requires: Lists the tools needed to build your package
+# - build-backend: Tells Python which system to use for building
+# - setuptools>=80.9: Version 80.9 or higher
+# - wheel>=0.45.1: Version 0.45.1 or higher
+
+# ===================================================================
+# CORE PROJECT METADATA  
+# ===================================================================
+# This section replaces most of the setup() function call
+[project]
+name = "schemafied"
+dynamic = ["version"]
+authors = [{ name = "Nadeem Ashraf", email = "dev.nadeemashraf06@gmail.com" }]
+description = "A Python library for validating data structures against user-defined schemas with comprehensive error reporting and nested structure support."
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+
+# Explanation of dynamic version:
+# - Instead of version = "1.0.0", we use dynamic = ["version"]
+# - This preserves your single source of truth in __init__.py
+# - Configuration for WHERE to read the version comes later
+
+# Keywords
+keywords = [
+	"validation",
+	"schema",
+	"dictionary",
+	"data-validation",
+	"json-validation",
+	"validation-library",
+	"python",
+	"nested-validation",
+	"error-handling",
+	"type-checking",
+]
+
+# Classifiers
+# "Development Status :: 1 - Planning"          # Idea stage
+# "Development Status :: 2 - Pre-Alpha"         # Early development
+# "Development Status :: 3 - Alpha"             # Feature-incomplete
+# "Development Status :: 4 - Beta"              # Feature-complete, testing
+# "Development Status :: 5 - Production/Stable" # Your current choice
+# "Development Status :: 6 - Mature"            # Stable, established
+# "Development Status :: 7 - Inactive"          # No longer maintained
+classifiers = [
+	"Development Status :: 4 - Beta",
+	# Intended Audience Classifications
+	"Intended Audience :: Developers",
+	# Operation System Target is 'Independent'
+	"Operating System :: OS Independent",
+	# License Classification
+	"License :: OSI Approved :: MIT License",
+	"Programming Language :: Python :: 3.13",
+	"Programming Language :: Python :: 3 :: Only",
+	# Translation: "I'm a Python library for developers"
+	"Topic :: Software Development :: Libraries :: Python Modules",
+	# Translation: "I help with code quality through validation"
+	"Topic :: Software Development :: Quality Assurance",
+	# Translation: "I'm a general-purpose utility tool"
+	"Topic :: Utilities",
+	"Typing :: Typed",
+	"Natural Language :: English",
+]
+
+# Runtime dependencies (your get_runtime_requirements() function)
+# Schemafied is dependency-free!
+dependencies = []
+
+# ===================================================================
+# PROJECT URLS
+# ===================================================================
+[project.urls]
+Homepage = "https://github.com/devnadeemashraf/schemafied"
+"Bug Tracker" = "https://github.com/devnadeemashraf/schemafied/issues"
+Documentation = "https://github.com/devnadeemashraf/schemafied#readme"
+"Source Code" = "https://github.com/devnadeemashraf/schemafied"
+Changelog = "https://github.com/devnadeemashraf/schemafied/blob/main/CHANGELOG.md"
+
+# ===================================================================
+# DYNAMIC VERSION CONFIGURATION
+# ===================================================================
+[tool.setuptools.dynamic]
+version = { attr = "schemafied.__version__" }
+
+# Explanation:
+# - This tells setuptools: "Read the version from schemafied.__version__"
+# - It will import your schemafied package and get the __version__ attribute
+# - This preserves your single source of truth approach!
+# - Your increment_version() function will continue to work unchanged
+
+# ===================================================================
+# OPTIONAL DEPENDENCIES
+# ===================================================================
+# This section replaces the extras_require parameter in setup()
+# These are installed with: pip install schemafied[dev] or pip install schemafied[docs,build]
+
+[project.optional-dependencies]
+
+# Development dependencies (your extras_require["dev"])
+# Install with: pip install schemafied[dev]
+dev = [
+	"pytest>=8.3.5",
+	"pytest-cov>=6.1.1",
+	"black>=25.1.0",
+	"flake8>=7.2.0",
+	"mypy>=1.15.0",
+	"coverage>=7.8.2",
+]
+
+# Documentation dependencies (your extras_require["docs"])
+# Install with: pip install schemafied[docs]
+docs = ["sphinx>=8.2.3", "sphinx-rtd-theme>=3.0.2", "myst-parser>=4.0.1"]
+
+# Build dependencies (your extras_require["build"])
+# Install with: pip install schemafied[build]
+build = [
+	"wheel>=0.45.1",
+	"build>=1.2.2.post1",
+	"twine>=6.1.0",
+	"setuptools>=80.9.0",
+]
+
+# Convenience combinations
+# Install with: pip install schemafied[all]
+all = [
+	# Include all dev dependencies
+	"pytest>=8.3.5",
+	"pytest-cov>=6.1.1",
+	"black>=25.1.0",
+	"flake8>=7.2.0",
+	"mypy>=1.15.0",
+	"coverage>=7.8.2",
+	# Include all docs dependencies  
+	"sphinx>=8.2.3",
+	"sphinx-rtd-theme>=3.0.2",
+	"myst-parser>=4.0.1",
+	# Include all build dependencies
+	"wheel>=0.45.1",
+	"build>=1.2.2.post1",
+	"twine>=6.1.0",
+	"setuptools>=80.9.0",
+]
+
+# Development + testing (common combination)
+# Install with: pip install schemafied[test]
+test = ["pytest>=8.3.5", "pytest-cov>=6.1.1", "coverage>=7.8.2"]
+
+# ===================================================================
+# SETUPTOOLS PACKAGE DISCOVERY
+# ===================================================================
+# This section replaces find_packages() and package_dir configuration
+[tool.setuptools.packages.find]
+# No "where" parameter needed - look in the current directory
+# This will find the "schemafied" package at the root level
+include = ["schemafied*"] # Include schemafied and any sub-packages
+exclude = ["tests*"]      # Exclude test packages from distribution
+
+# Alternative explicit approach (if auto-discovery has issues):
+# [tool.setuptools.packages]
+# find = {}  # Use default auto-discovery
+
+# ===================================================================
+# PACKAGE DATA AND FILE INCLUSION
+# ===================================================================
+# This section replaces package_data and include_package_data from setup.py
+[tool.setuptools.package-data]
+# Your setup.py had: package_data={"schemafied": ["py.typed"]}
+schemafied = ["py.typed"]
+
+# Alternative: you can also use include-package-data = true
+# [tool.setuptools]
+# include-package-data = true
+
+# ===================================================================
+# ADDITIONAL SETUPTOOLS CONFIGURATION
+# ===================================================================
+[tool.setuptools]
+# This replaces zip_safe=False from your setup.py
+zip-safe = false
+
+# Include package data (replaces include_package_data=True)
+include-package-data = true
+
+# ===================================================================
+# TOOL CONFIGURATIONS
+# ===================================================================
+# This section consolidates all development tool configurations
+# Previously these might have been in separate config files
+
+# Pytest Configuration
+# Replaces pytest.ini or setup.cfg [tool:pytest] sections
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+	"-v",                        # Verbose output
+	"--tb=short",                # Short traceback format
+	"--strict-markers",          # Strict marker handling
+	"--cov=schemafied",          # Coverage for schemafied package
+	"--cov-report=term-missing", # Show missing lines
+	"--cov-report=html:htmlcov", # Generate HTML coverage report
+]
+markers = [
+	"slow: marks tests as slow (deselect with '-m \"not slow\"')",
+	"integration: marks tests as integration tests",
+	"performance: marks tests as performance tests",
+]
+filterwarnings = [
+	"error",                      # Treat warnings as errors
+	"ignore::DeprecationWarning", # But ignore deprecation warnings
+]
+
+# Black Code Formatter Configuration
+# Replaces pyproject.toml [tool.black] or .black config files
+[tool.black]
+line-length = 240 # Match your Makefile configuration
+target-version = ["py313"] # Python 3.13 target
+include = '\.pyi?$' # Include .py and .pyi files
+extend-exclude = '''
+/(
+    # Exclude common directories
+    \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.venv
+  | _build
+  | build
+  | dist
+)/
+'''
+
+# MyPy Type Checker Configuration
+# Replaces mypy.ini or setup.cfg [mypy] sections
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+
+# Package-specific mypy settings
+[[tool.mypy.overrides]]
+module = "schemafied.*"
+strict = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false # Allow less strict typing in tests
+
+# Coverage.py Configuration
+# Replaces .coveragerc or setup.cfg [coverage:*] sections
+[tool.coverage.run]
+source = ["schemafied"]
+branch = true
+omit = ["*/tests/*", "*/test_*", "setup.py", "*/venv/*", "*/.venv/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+	"pragma: no cover",
+	"def __repr__",
+	"if self.debug:",
+	"if settings.DEBUG",
+	"raise AssertionError",
+	"raise NotImplementedError",
+	"if 0:",
+	"if __name__ == .__main__.:",
+	"class .*\\bProtocol\\):",
+	"@(abc\\.)?abstractmethod",
+]
+show_missing = true
+precision = 2
+
+[tool.coverage.html]
+directory = "htmlcov"
