@@ -14,34 +14,32 @@ __author__ = "Nadeem Ashraf"
 __email__ = "dev.nadeemashraf06@gmail.com"
 __license__ = "MIT"
 
-# Import Annotations
-from typing import TYPE_CHECKING
+# Core exports
+from .schema import Schema
+from .exceptions import (
+    ValidationError,
+    ValidationErrorCollection,
+    MissingFieldError,
+    ConstraintError,
+    TypeValidationError,
+    NestedValidationError,
+)
 
-if TYPE_CHECKING:
-    # Core exports
-    from .schema import Schema
-    from .exceptions import (
-        ValidationError,
-        ValidationErrorCollection,
-        MissingFieldError,
-        ConstraintError,
-        TypeValidationError,
-        NestedValidationError,
-    )
+# Field exports
+from .fields import (
+    Field,
+    NumberField,
+    StringField,
+    ListField,
+    DictField,
+)
 
-    # Field exports
-    from .fields import (
-        Field,
-        NumberField,
-        StringField,
-        ListField,
-        DictField,
-    )
+# Validation context (advanced usage)
+from .validation_context import ValidationContext
 
-    # Validation context (advanced usage)
-    from .validation_context import ValidationContext
+# No TYPE_CHECKING section needed - everything available everywhere
 
-__all__: list[str] = [
+__all__ = [
     # Core classes
     "Schema",
     "ValidationContext",
